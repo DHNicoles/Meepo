@@ -20,10 +20,12 @@ class TrackerManager :public Singleton<TrackerManager>
         void OnUpdate_Ex(cv::Mat & frame_batch);
         void SetBound(cv::Size, cv::Rect);
         std::map<size_t, std::shared_ptr<HeadData> >& Trackers() { return head_data_map_; }
+        std::map<size_t, std::shared_ptr<KCFTracker> >& Kcfers() { return traker_map_; }
         void AddTracker(cv::Mat & frame, const cv::Rect & positionBox);
+        void ReplaceTracker(cv::Mat & frame, const cv::Rect & positionBox, size_t ID);
+        bool IsOutBoard(const cv::Point& cur_pt);
     private:
         int GetIndex();
-        bool IsOutboard(cv::Mat& bound_mask, cv::Rect & positionBox);
         void ExitScaning();
     private:
         std::map<size_t, std::shared_ptr<HeadData> > head_data_map_; 

@@ -8,7 +8,7 @@
 INITIALIZE_EASYLOGGINGPP;
 
 const cv::Size l_view_scope(600, 400);
-const double l_adapted_frame_rate = 10.0;
+const double l_adapted_frame_rate = 20.0;
 int Solver::OnInit()
 {
     view_scope_ = l_view_scope;
@@ -100,19 +100,20 @@ void Solver::Solve()
         Combine::Instance()->OnUpdate(frame, bbox);
 
         /// draw tracker ///
-        cv::Mat tmp = frame.clone();
-        DisplayTracker(tmp);
-        for(auto& r : bbox)
-        {
-            cv::rectangle(frame, r, cv::Scalar(0, 0, 0), 4, 4);
-        }
-        cv::imshow("detector", frame);
-        cv::waitKey(1);
+        //cv::Mat tmp = frame.clone();
+        //DisplayTracker(tmp);
+        //for(auto& r : bbox)
+        //{
+        //    cv::rectangle(frame, r, cv::Scalar(0, 0, 0), 4, 4);
+        //}
+        //cv::imshow("detector", frame);
+        //cv::waitKey(1);
 
 		if (++cnt % fps_inter == 0)
 		{
 			T0.Stop();
 			LOG(INFO) << " - Meepo-FPS:\t" << fps_inter / T0.GetTime();
+			LOG(INFO) << " - Tracker num:\t" << TrackerManager::Instance()->Trackers().size();
 		}
 	}
 	LOG(INFO) << " - Meepo server stoped!";

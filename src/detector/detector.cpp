@@ -127,9 +127,11 @@ void Detector::OnUpdate(cv::Mat& frame, std::vector<cv::Rect>& bbox)
 			boxes[image_id].push_back(static_cast<int>(xmax - xmin));
 			boxes[image_id].push_back(static_cast<int>(ymax - ymin));
 		}*/
-		if (confidence > 0.3 && label == 1) 
+		if (confidence > 0.8 && label == 1) 
         {
-           bbox.emplace_back(cv::Rect(xmin, ymin, xmax - xmin, ymax - ymin)); 
+            cv::Rect box(xmin, ymin, xmax - xmin, ymax - ymin);
+            cv::Rect scale_roi = scaleRoi(box);
+            bbox.emplace_back(scale_roi); 
         }
 	}
 }

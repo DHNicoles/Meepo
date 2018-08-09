@@ -30,6 +30,13 @@ private:\
 	classname(const classname&); \
 	classname& operator=(const classname&)
 
+inline float Iou(const cv::Rect& r1, const cv::Rect& r2)
+{
+    cv::Rect inter = r1 & r2;
+    float ratio = (float)inter.area() / (float)(r1.area() + r2.area() - inter.area());
+    return ratio;
+}
+
 inline int distance(const cv::Rect& r1, const cv::Rect& r2)
 {
     int cent_x_1 = r1.x + (r1.width >> 1);
@@ -39,5 +46,12 @@ inline int distance(const cv::Rect& r1, const cv::Rect& r2)
     return std::abs(cent_x_1 - cent_x_2) + std::abs(cent_y_1 - cent_y_2);
 }
 
+inline cv::Rect scaleRoi(const cv::Rect& r)
+{
+    int cent_x = r.x + (r.width  >> 1);
+    int cent_y = r.y + (r.height >> 1);
+    int short_side = std::min(r.width, r.height) * 0.7;
+    return cv::Rect(cent_x - (short_side >> 1), cent_y - (short_side >> 1), short_side, short_side);
+}
 
 #endif//util_h__

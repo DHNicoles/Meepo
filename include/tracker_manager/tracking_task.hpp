@@ -24,11 +24,18 @@ public:
     }
     virtual int run()
     {
-		cv::Rect pos = tracking_task_param_->_kcf->update(tracking_task_param_->_frame);
-		int cent_x = pos.x + (pos.width >> 1);
-		int cent_y = pos.y + (pos.height >> 1);
-		tracking_task_param_->_head_data->HeadTrace().emplace_back(cv::Point(cent_x, cent_y));
-		tracking_task_param_->_head_data->Box() = pos;
+        try 
+        {
+            cv::Rect pos = tracking_task_param_->_kcf->update(tracking_task_param_->_frame);
+            int cent_x = pos.x + (pos.width >> 1);
+            int cent_y = pos.y + (pos.height >> 1);
+            tracking_task_param_->_head_data->HeadTrace().emplace_back(cv::Point(cent_x, cent_y));
+            tracking_task_param_->_head_data->Box() = pos;
+        }
+        catch (const std::exception& error) 
+        {
+            LOG(ERROR) << error.what();
+        }
         delete tracking_task_param_;
         return 0;
     } 

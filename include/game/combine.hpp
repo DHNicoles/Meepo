@@ -11,5 +11,6 @@ public:
     void OnInit();
     void OnDestroy();
     void OnUpdate(cv::Mat& frame, std::vector<cv::Rect>& bbox);
+    void Scanning();
 };
 #endif//combine_h__

@@ -10,10 +10,16 @@ public:
     HeadData(size_t id, const cv::Rect& bbox);
     TraitsType& HeadTrace(){ return trace_; }
     cv::Rect& Box(){ return bbox_; }
+    void SetHit() { ++hit_; }
+    const bool Dice() { return dice_; }
+    void OnUpdate();
 private:
-    size_t id_;
-    cv::Rect bbox_;
-    TraitsType trace_;
+    size_t      id_;
+    cv::Rect    bbox_;
+    TraitsType  trace_;
+    int         life_;
+    int         hit_;
+    bool        dice_;
 };
 
 

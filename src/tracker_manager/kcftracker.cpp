@@ -291,7 +291,7 @@ cv::Mat KCFTracker::gaussianCorrelation(cv::Mat x1, cv::Mat x2)
         cv::Mat caux;
         cv::Mat x1aux;
         cv::Mat x2aux;
-        for (int i = 0; i < size_patch[2]; i++) {
+        for (int i = 0; i < size_patch[2] && i < x1.rows && i < x2.rows; i++) {
             x1aux = x1.row(i);   // Procedure do deal with cv::Mat multichannel bug
             x1aux = x1aux.reshape(1, size_patch[0]);
             x2aux = x2.row(i).reshape(1, size_patch[0]);
