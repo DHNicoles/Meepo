@@ -47,7 +47,6 @@ void HeadData::OnUpdate()
         for(int i = trace_.size() - stop_check_size; i < trace_.size(); ++i)
            len += std::abs(trace_[i].x - trace_[i - 1].x) + std::abs(trace_[i].y - trace_[i - 1].y); 
         len /= stop_check_size; 
-        LOG(INFO) << "len = " << len;
         if(len < l_stop_check_thresh)
         {
             dice_ = true;
@@ -55,6 +54,5 @@ void HeadData::OnUpdate()
             return;
         }
     }
-    
     ++life_;
 }
