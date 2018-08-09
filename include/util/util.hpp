@@ -53,5 +53,20 @@ inline cv::Rect scaleRoi(const cv::Rect& r)
     int short_side = std::min(r.width, r.height) * 0.7;
     return cv::Rect(cent_x - (short_side >> 1), cent_y - (short_side >> 1), short_side, short_side);
 }
-
+inline std::string getSystemTime()
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	struct tm* ltm = localtime(&tv.tv_sec);
+	char timestr[256];
+	sprintf(timestr, "%d-%02d-%02d-%02d-%02d-%02d-%03d",
+			ltm->tm_year + 1900,
+			ltm->tm_mon + 1,
+			ltm->tm_mday,
+			ltm->tm_hour,
+			ltm->tm_min,
+			ltm->tm_sec,
+			tv.tv_usec / 1000);
+	return std::string(timestr);
+} 
 #endif//util_h__

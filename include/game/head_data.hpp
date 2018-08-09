@@ -5,6 +5,7 @@
 
 class HeadData
 {
+public:
     typedef std::vector<cv::Point> TraitsType;
     enum DiceType
     {
@@ -12,7 +13,6 @@ class HeadData
         Dice_OutBoard = 1,
         Dice_StopMove = 2,
     };
-public:
     HeadData(size_t id, const cv::Rect& bbox);
     TraitsType& HeadTrace(){ return trace_; }
     cv::Rect& Box(){ return bbox_; }

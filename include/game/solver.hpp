@@ -6,6 +6,7 @@
 class CameraManager;
 class TrackerManager;
 class Detector;
+class Sync;
 class Solver : public Singleton<Solver>
 {
 	public:
@@ -26,6 +27,7 @@ class Solver : public Singleton<Solver>
 		std::shared_ptr<CameraManager> camera_manager_;
 		std::shared_ptr<TrackerManager> tracker_manager_;
 		std::shared_ptr<Detector> detector_;
+		std::shared_ptr<Sync> syncor_;
         cv::Size view_scope_;
         double adapted_frame_rate_;
 

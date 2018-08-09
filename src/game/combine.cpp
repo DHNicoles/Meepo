@@ -1,6 +1,7 @@
 #include "game/combine.hpp"
 #include "tracker_manager/tracker_manager.hpp"
 #include "game/head_data.hpp"
+#include "game/sync.hpp"
 
 const int l_cent_dist_thresh = 40;
 const float l_iou_dist_thresh_hi = 0.6;
@@ -69,6 +70,8 @@ void Combine::Scanning()
         if(t_itr->second->Dice())
         {
             LOG(INFO) << " - rm " << t_itr->first << ", type: " << t_itr->second->WhichDiceType();
+            if(t_itr->second->WhichDiceType() != HeadData::Dice_Null)
+                Sync::Instance()->IncreseRecord(); 
             t_itr = trackers.erase(t_itr);
             k_itr = kcfers.erase(k_itr);
         }

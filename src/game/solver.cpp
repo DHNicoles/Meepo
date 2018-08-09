@@ -2,6 +2,7 @@
 #include "camera/camera_manager.hpp"
 #include "tracker_manager/tracker_manager.hpp"
 #include "detector/detector.hpp"
+#include "game/sync.hpp"
 #include "game/combine.hpp"
 #include "game/head_data.hpp"
 
@@ -19,6 +20,8 @@ int Solver::OnInit()
 
 	detector_.reset(new Detector());
 	Detector::Instance()->OnInit();
+    syncor_.reset(new Sync());
+    Sync::Instance()->OnInit();
 
     camera_manager_.reset(new CameraManager());
 	CameraManager::Instance()->SetBrand(CameraManager::VIDEO_FILE);	
