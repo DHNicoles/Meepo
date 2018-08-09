@@ -5,7 +5,7 @@
 #include "game/solver.hpp"
 
 const int l_bound_margin = 20;
-const int l_thread_num = 2;
+const int l_thread_num = 5;
 TrackerManager::TrackerManager()
     :cur_id_(0)
 {
