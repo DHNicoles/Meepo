@@ -68,7 +68,7 @@ void Combine::Scanning()
         t_itr -> second -> OnUpdate();
         if(t_itr->second->Dice())
         {
-            //LOG(INFO) << " - rm " << t_itr->first;
+            LOG(INFO) << " - rm " << t_itr->first << ", type: " << t_itr->second->WhichDiceType();
             t_itr = trackers.erase(t_itr);
             k_itr = kcfers.erase(k_itr);
         }

@@ -23,7 +23,7 @@ int Solver::OnInit()
     camera_manager_.reset(new CameraManager());
 	CameraManager::Instance()->SetBrand(CameraManager::VIDEO_FILE);	
 	CameraManager::Instance()->OnInit();
-    const std::string video_file = "/home/intel/workspace/Meepo/resource/video_file/crop_02.mkv";
+    const std::string video_file = "/home/intel/workspace/Meepo/resource/video_file/crop_01.mkv";
     //const std::string video_file = "/home/intel/Test/code/test.mp4";
     CameraManager::Instance()->RegisterFileCam(0, video_file);
 	
@@ -100,8 +100,8 @@ void Solver::Solve()
         Combine::Instance()->OnUpdate(frame, bbox);
 
         /// draw tracker ///
-        //cv::Mat tmp = frame.clone();
-        //DisplayTracker(tmp);
+        cv::Mat tmp = frame.clone();
+        DisplayTracker(tmp);
         //for(auto& r : bbox)
         //{
         //    cv::rectangle(frame, r, cv::Scalar(0, 0, 0), 4, 4);
